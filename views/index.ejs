@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Best Price</title>
+
+    <!--<script defer src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script defer src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script defer src="https://cdn.datatables.net/1.13.6/js/dataTables.bootstrap5.min.js"></script>-->
+    <script defer src="client.js"></script>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" href="/styles.css" type="text/css" />
+</head>
+
+<body>
+    <div class="flex-container">
+        <div class="flexbox-item flexbox-item-1">
+
+            <h1>Best Price</h1>
+            <form id="dataForm" action="/submit" method="post">
+                <div class="input-field"><input type="text" name="start" placeholder="Honnan?" required><br></div>
+                <div class="input-field"><input type="text" name="end" placeholder="Hova?" required> <br></div>
+                
+                <div class="discount-field">
+                    <select class="discountSelect" name="discountSelect" id="discountSelect">
+                        <option value="Diák - 50%">Diák - 50%</option>
+                        <option value="Sérült - 90%">Sérült - 90%</option>
+                        <option value="MávStart Kártya - Díjmentes">MávStart Kártya - Díjmentes</option>
+                    </select>
+                    <button class="discountButton" id="addDiscountButton" type="button">Hozzáadás</button>
+                    <button class="discountButton" id="removeDiscountButton" type="button">Eltávolítás</button>
+
+                    <ul class="discountList" id="discountList"></ul>
+                </div>
+
+                <div class="slider-container">
+                    <input type="range" name="weight" min="0" max="100" value="0" class="slider" id="weight">
+                    <div class="weight-display">
+                        <div>Ár súlya: <span id="costWeight">100</span>%</div>
+                        <div>Távolság súlya: <span id="distanceWeight">0</span>%</div>
+                    </div>
+                </div>
+
+                <button class="search-btn" type="submit">Keresés</button>
+            </form>
+        </div>
+
+        <div class="flexbox-item flexbox-item-2">
+            <div class="label1">A bakter ajánlata a teljes útra:</div>
+            <div>Jegy neve: <span id="bestTicketName"></span>
+            </div>
+            <div>Jegy ára: <span id="bestTicketCost"></span>
+            </div>
+        </div>
+
+        <div class="flexbox-item flexbox-item-3">
+            <table id="formatted-table" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Honnan-Hova</th>
+                        <th>Állomások</th>
+                        <th>Jegyek</th>
+                        <th>Teljes költség</th>
+                        <th>Teljes távolság</th>
+                        <th>Súly</th>
+                        <th>Felhasznált kedvezmény</th>
+                        <th>Eltávolítás</th>
+                    </tr>
+                </thead>
+
+                <tbody id="dataTable">
+                </tbody>
+        </div>
+    </div>
+</body>
+
+</html>
